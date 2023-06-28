@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+#    entrypoint: python pycades_src/setup.py install
+#    volumes:
+#      - ./:/opt/
+#    env_file:
+#      - ./.env
+    ports:
+      - "8001:8001"

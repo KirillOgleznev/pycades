@@ -1,6 +1,6 @@
 import pytest
 
-from pycades import pycades
+import pycades
 
 
 @pytest.fixture
@@ -98,3 +98,10 @@ def test_get_public_key(load_cert):
     """Получение публичного ключа."""
     public_key = 'BEBaSmukHWuPC4xav3a89jNu3xarv4N/j68a4PZRPij83W70R8LjrW4ZSfdqIJkv\nou5oQwxj7FobT1XblfSm6kCO\n'
     assert load_cert.PublicKey().EncodedKey.Value() == public_key
+
+
+if __name__ == '__main__':
+    with open('tests/certs/Kornevoy-sertifikat-GUTS-2022.CER', "rb") as f:
+        cert = pycades.Certificate()
+        cert.Import(f.read())
+    print(cert.IsValid().Result)
