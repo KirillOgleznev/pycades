@@ -2,4 +2,5 @@ twine==4.0.2
 wheel==0.38.4
 setuptools==68.0.0
 pytest==7.4.0
-pycades~=16.11.2022
+auditwheel==5.4.0
+patchelf==0.17.2.1

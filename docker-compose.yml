@@ -5,10 +5,13 @@ services:
     build:
       context: ./
       dockerfile: docker/Dockerfile
-#    entrypoint: python pycades_src/setup.py install
-#    volumes:
-#      - ./:/opt/
-#    env_file:
-#      - ./.env
+    volumes:
+      - ./wheelhouse:/server/wheelhouse
     ports:
       - "8001:8001"
+  test:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile_test
+    ports:
+      - "8002:8002"
