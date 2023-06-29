@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=CryptoPro CSP Installer
+Name[ru]=Установщик КриптоПро CSP
+Exec=sh -c 'if test -n "$1"; then dist_dir=$(dirname "$1"); cd "$dist_dir"; fi; sh ./install_gui.sh' -- %k
+Terminal=true
+Type=Application
