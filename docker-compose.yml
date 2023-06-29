@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  server:
+  ubuntu:
     build:
       context: ./
       dockerfile: docker/Dockerfile
@@ -9,9 +9,17 @@ services:
       - ./wheelhouse:/server/wheelhouse
     ports:
       - "8001:8001"
-  test:
+  pytest:
     build:
       context: ./
-      dockerfile: docker/Dockerfile_test
+      dockerfile: docker-pytest/Dockerfile
     ports:
       - "8002:8002"
+  manylinux:
+    build:
+      context: ./
+      dockerfile: docker-manylinux/Dockerfile
+    volumes:
+      - ./wheelhouse:/server/wheelhouse
+    ports:
+      - "8003:8003"
