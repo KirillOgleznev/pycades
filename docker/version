@@ -1,5 +1,7 @@
 1.1.2
 
+twine upload wheelhouse/*
+
 # Ubuntu
 auditwheel repair --plat manylinux_2_35_x86_64 dist/*.whl
 auditwheel repair --plat manylinux_2_34_x86_64 dist/*.whl
