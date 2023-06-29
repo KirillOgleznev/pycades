@@ -1,14 +1,16 @@
+import os
+
 import pytest
 
-import pycades
+from pycades import pycades
 
 
 @pytest.fixture
 def load_cert(request):
-    with open('./certs/Kornevoy-sertifikat-GUTS-2022.CER', "rb") as f:
-        cert = pycades.Certificate()
-        cert.Import(f.read())
-    return cert
+    with open(os.path.join(os.path.dirname(__file__), 'certs/Kornevoy-sertifikat-GUTS-2022.CER'), "rb") as file:
+        certificate = pycades.Certificate()
+        certificate.Import(file.read())
+    return certificate
 
 
 def test_get_base_info(load_cert):
@@ -24,8 +26,16 @@ def test_get_base_info(load_cert):
         'России, STREET="Пресненская набережная, дом 10, строение 2", L=г. Москва, '
         'S=77 Москва, C=RU, E=dit@digital.gov.ru'
     )
+    # Если не установлены зависимости КриптоПро то вернется этот вариант,
+    # и вообще библиотека начинает вести себя не предсказуемо
+    name_when_no_lib = (
+        '2.5.4.3=Минцифры России, 1.2.643.100.4=7710474375, 1.2.643.100.1=1047702026701, '
+        '2.5.4.10=Минцифры России, 2.5.4.9="Пресненская набережная, дом 10, строение 2", '
+        '2.5.4.7=г. Москва, 2.5.4.8=77 Москва, 2.5.4.6=RU, 1.2.840.113549.1.9.1=dit@digital.gov.ru'
+    )
     # Издатель сертификата.
-    assert load_cert.IssuerName == name
+    # raise Exception(load_cert.IssuerName)
+    assert load_cert.IssuerName in [name, name_when_no_lib]
     # Имя субъекта.
     assert load_cert.SubjectName == name
     # Отпечаток.
@@ -66,8 +76,12 @@ def test_get_ep_info_from_file(load_cert):
     company_name = None
     subject_name = None
     for info in load_cert.SubjectName.split(','):
-        if ' O=' in info:
+        if ' 2.5.4.10=' in info:
+            company_name = info[10:]
+        elif ' O=' in info:
             company_name = info[3:]
+        elif '2.5.4.3=' in info:
+            subject_name = info[8:]
         elif 'CN=' in info:
             subject_name = info[3:]
 
@@ -98,10 +112,3 @@ def test_get_public_key(load_cert):
     """Получение публичного ключа."""
     public_key = 'BEBaSmukHWuPC4xav3a89jNu3xarv4N/j68a4PZRPij83W70R8LjrW4ZSfdqIJkv\nou5oQwxj7FobT1XblfSm6kCO\n'
     assert load_cert.PublicKey().EncodedKey.Value() == public_key
-
-
-if __name__ == '__main__':
-    with open('tests/certs/Kornevoy-sertifikat-GUTS-2022.CER', "rb") as f:
-        cert = pycades.Certificate()
-        cert.Import(f.read())
-    print(cert.IsValid().Result)
