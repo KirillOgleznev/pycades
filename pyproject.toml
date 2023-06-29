@@ -1,0 +1,7 @@
+[project]
+readme = "README.md"
+
+[project.urls]
+homepage = "https://docs.cryptopro.ru/cades/pycades"
+documentation = "https://docs.cryptopro.ru/cades/pycades"
+source = "https://github.com/KirillOgleznev/pycades"

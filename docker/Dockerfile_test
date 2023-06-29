@@ -1,18 +1,19 @@
 FROM python:3.10
 
-COPY wheelhouse /opt/wheelhouse
-RUN cd opt && pip install wheelhouse/pycades-1.1.0-py3-none-manylinux_2_24_x86_64.whl
-
 ADD ./test_requirements.txt /opt
 RUN pip install -r /opt/test_requirements.txt
-
-COPY ./libs /tmp
-RUN cd tmp/ && linux-amd64_deb/install.sh
 
 COPY ./setup.py /opt/setup.py
 
 COPY ./docker/entrypoint-test.sh /opt/entrypoint-test.sh
 COPY tests /opt/tests
+
+#COPY wheelhouse /opt/wheelhouse
+#RUN cd opt && pip install wheelhouse/pycades-1.1.0-py3-none-manylinux_2_24_x86_64.whl
+
+COPY ./libs /tmp
+RUN cd tmp/ && linux-amd64_deb/install.sh
+RUN pip install pycades
 
 WORKDIR /opt
 RUN ["chmod", "+x", "/opt/entrypoint-test.sh"]

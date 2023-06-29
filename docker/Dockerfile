@@ -5,6 +5,7 @@ RUN pip install -r /server/test_requirements.txt
 
 COPY ./setup.py /server/setup.py
 COPY ./pycades /server/pycades
+COPY ./README.md /server/README.md
 
 COPY ./libs /tmp
 RUN cd tmp/ && linux-amd64_deb/install.sh
