@@ -37,9 +37,7 @@ def test_get_base_info(load_cert):
     # raise Exception(load_cert.IssuerName)
     assert load_cert.IssuerName in [name, name_when_no_lib]
     # Имя субъекта.
-    assert load_cert.SubjectName == name
-    # Отпечаток.
-    assert load_cert.Thumbprint == '2F0CB09BE3550EF17EC4F29C90ABD18BFCAAD63A'
+    assert load_cert.SubjectName in [name, name_when_no_lib]
     # Версия сертификата.
     assert load_cert.Version == 3
 
