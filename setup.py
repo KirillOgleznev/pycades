@@ -1,17 +1,14 @@
-from setuptools import setup, Extension
+from setuptools import setup
 
-module1 = Extension('libcppcades.so.2', sources=['/home/kir/opt/cprocsp/lib/amd64/libcppcades.so'])
 
 setup(
     name='pycades',
-    version='28.06.2023',
+    version='1.1.0',
     author="Kirill",
     author_email="kirill24680@gmail.com",
     description="""Расширение Pycades предоставляет программный интерфейс, аналогичный КриптоПро""",
-    py_modules=["pycades"],
     packages=['pycades'],
     package_data={
-        'pycades': ['pycades.so', '/opt/cprocsp/lib/amd64/libcppcades.so.2'],
+        'pycades': ['pycades.so'],
     },
-    include_dirs=['/opt/cprocsp/lib/amd64'],
 )
