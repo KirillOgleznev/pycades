@@ -1,6 +1,6 @@
 # pycades
 
-Данный проект создан для удобной установки pycades в свой проект
+Данный проект создан для удобной установки pycades в свой проект, пока только для linux систем
 
 pycades представляет собой расширение для Python3, которое реализует интерфейс, аналогичный [CAdESCOM](https://docs.cryptopro.ru/cades/reference/cadescom).
 
@@ -11,8 +11,8 @@ pycades представляет собой расширение для Python3,
     pip install pycades
 
 Если не установлены зависимости КриптоПро CSP, то библиотека начинает вести себя непредсказуемо и 
-некоторые методы перестают работать, для лучшей работы желательно установить их установить [с оф сайта](https://docs.cryptopro.ru/cades/pycades/pycades-build)
-или найти их в [гите /libs](https://github.com/KirillOgleznev/pycades/tree/main/libs) (достаточно будет установить КриптоПро CSP, [/libs/linux-amd64_deb](https://github.com/KirillOgleznev/pycades/tree/main/libs/linux-amd64_deb) через install.sh)
+некоторые методы перестают работать, для лучшей работы желательно их установить [с оф сайта](https://docs.cryptopro.ru/cades/pycades/pycades-build)
+или найти в [гите /libs](https://github.com/KirillOgleznev/pycades/tree/main/libs) (достаточно будет установить КриптоПро CSP, [/libs/linux-amd64_deb](https://github.com/KirillOgleznev/pycades/tree/main/libs/linux-amd64_deb) через install.sh)
 
 
 [Официальная документация](https://docs.cryptopro.ru/cades/pycades)
