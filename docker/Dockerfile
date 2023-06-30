@@ -12,7 +12,7 @@ RUN cd tmp/ && linux-amd64_deb/install.sh
 RUN cd tmp/ && apt install ./lsb-cprocsp-devel_5.0.12500-6_all.deb
 RUN cd tmp/ && apt install ./cprocsp-pki-cades-64_2.0.14589-1_amd64.deb
 
-RUN python ./server/setup.py bdist_wheel
+RUN cd server && python setup.py bdist_wheel
 RUN auditwheel repair ./server/dist/*.whl --plat linux_x86_64
 RUN pip install ./server/wheelhouse/*.whl
 
@@ -21,6 +21,6 @@ COPY ./tests /server/tests
 
 WORKDIR /server
 
-RUN ["chmod", "+x", "/server/entrypoint.sh"]
+RUN ["chmod", "+x", "./entrypoint.sh"]
 ENTRYPOINT ["./entrypoint.sh"]
 

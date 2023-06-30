@@ -7,6 +7,8 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ./wheelhouse:/server/wheelhouse
+      - ./pyproject.toml:/server/pyproject.toml
+      - ./setup.py:/server/setup.py
     ports:
       - "8001:8001"
   pytest:

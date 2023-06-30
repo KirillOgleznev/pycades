@@ -1,6 +1,6 @@
 #!/bin/sh
 
 while true; do
-  python -m pytest tests/tests.py
+  /opt/python/cp37-cp37m/bin/python -m pytest tests/tests.py
   sleep 10
 done
