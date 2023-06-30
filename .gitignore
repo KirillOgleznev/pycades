@@ -17,3 +17,4 @@ build-install
 /.pytest_cache/
 /archive/
 /wheelhouse/
+/build

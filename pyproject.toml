@@ -1,5 +1,7 @@
 [project]
+name = "pycades"
 readme = "README.md"
+version = "1.1.3"
 
 [project.urls]
 homepage = "https://docs.cryptopro.ru/cades/pycades"
