@@ -16,7 +16,9 @@ def repair_wheel(dist_dir='dist'):
     os.system(auditwheel_cmd.format(plat='manylinux_2_27_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_24_x86_64'))
 
-    os.system('mv ./wheelhouse/*.whl /server/dist')
+    os.system('mv ./wheelhouse/*.whl {plat}/dist'.format(
+        plat='/'.join(dist_dir.split('/')[:-1])
+    ))
 
 
 class BdistWheel(bdist_wheel):
