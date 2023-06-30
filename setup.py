@@ -4,21 +4,16 @@ from pathlib import Path
 from wheel.bdist_wheel import bdist_wheel
 
 
-def repair_wheel(dist_dir='dist'):
+def repair_wheel(dist_dir='./dist'):
     import os
 
     auditwheel_cmd = 'auditwheel repair --plat {plat} ' + dist_dir + '/*.whl'
-
     os.system(auditwheel_cmd.format(plat='manylinux_2_35_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_34_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_31_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_28_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_27_x86_64'))
     os.system(auditwheel_cmd.format(plat='manylinux_2_24_x86_64'))
-
-    os.system('mv ./wheelhouse/*.whl {plat}/dist'.format(
-        plat='/'.join(dist_dir.split('/')[:-1])
-    ))
 
 
 class BdistWheel(bdist_wheel):
