@@ -9,12 +9,21 @@ services:
       - ./wheelhouse:/server/wheelhouse
       - ./pyproject.toml:/server/pyproject.toml
       - ./setup.py:/server/setup.py
+      - ./pycades:/server/pycades
+      - ./build:/server/build/
     ports:
-      - "8001:8001"
+      - "8003:8003"
   pytest:
     build:
       context: ./
       dockerfile: docker-pytest/Dockerfile
+    volumes:
+      - ./wheelhouse:/opt/wheelhouse
+      - ./pyproject.toml:/opt/pyproject.toml
+      - ./setup.py:/opt/setup.py
+#      - ./pycades:/opt/pycades
+#      - ./build:/opt/build/
+      - ./tests:/opt/tests
     ports:
       - "8002:8002"
   manylinux:

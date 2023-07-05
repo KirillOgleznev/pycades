@@ -35,10 +35,12 @@ def test_get_base_info(load_cert):
     )
     # Издатель сертификата.
     # raise Exception(load_cert.IssuerName)
-    assert load_cert.IssuerName in [name, name_when_no_lib]
+    assert load_cert.IssuerName in [name]
     # Имя субъекта.
-    assert load_cert.SubjectName in [name, name_when_no_lib]
+    assert load_cert.SubjectName in [name]
     # Версия сертификата.
+    assert load_cert.Thumbprint
+
     assert load_cert.Version == 3
 
 

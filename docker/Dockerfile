@@ -17,6 +17,6 @@ COPY ./tests /server/tests
 
 WORKDIR /server
 
-RUN ["chmod", "+x", "./entrypoint.sh"]
+RUN ["chmod", "+x", "/server/entrypoint.sh"]
 ENTRYPOINT ["./entrypoint.sh"]
 

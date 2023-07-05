@@ -36,4 +36,4 @@ def load_library():
     return pycades_lib
 
 
-pycades = load_library()
+load_library()
