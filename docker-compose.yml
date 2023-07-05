@@ -21,8 +21,8 @@ services:
       - ./wheelhouse:/opt/wheelhouse
       - ./pyproject.toml:/opt/pyproject.toml
       - ./setup.py:/opt/setup.py
-#      - ./pycades:/opt/pycades
-#      - ./build:/opt/build/
+      - ./pycades:/opt/pycades
+      - ./build:/opt/build/
       - ./tests:/opt/tests
     ports:
       - "8002:8002"
